@@ -29,6 +29,7 @@ class ApacheaprutilConan(ConanFile):
 
             with tools.chdir("apr-util-" + self.version):
                 self.run(configure_command)
+                self.run("find ./")
                 self.run("make -j " + str(max(tools.cpu_count() - 1, 1)))
                 self.run("make install")
 

@@ -3,18 +3,18 @@ import os
 
 class ApacheaprutilConan(ConanFile):
     name = "apache-apr-util"
-    version = "1.5.4"
+    version = "1.6.1"
     license = "Apache-2.0"
     url = "https://github.com/mkovalchik/conan-apache-apr-util"
     settings = "os", "compiler", "build_type", "arch"
-    requires = "apache-apr/1.5.2@mkovalchik/stable"
+    requires = "apache-apr/1.6.5@mkovalchik/stable"
     options = {"shared": [True, False]}
     default_options = "shared=False"
     lib_name = name + "-" + version
 
     def source(self):
         file_ext = ".tar.gz" if not self.settings.os == "Windows" else "-win32-src.zip"
-        tools.download("https://www.apache.org/dyn/mirrors/mirrors.cgi?action=download&filename=apr/apr-util-" + self.version + file_ext, self.lib_name + file_ext)
+        tools.download("https://www-us.apache.org/dist//apr/apr-util-" + self.version + file_ext, self.lib_name + file_ext)
         tools.unzip(self.lib_name + file_ext)
 
     def build(self):
